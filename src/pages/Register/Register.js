@@ -4,11 +4,14 @@ import { Box, Button, TextField } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Link } from "react-router-dom";
+import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
+import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
+import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 
 const Register = () => {
   return (
     <div
-      style={{ minHeight: "70vh" }}
+      style={{ minHeight: "70vh", fontFamily: "roboto" }}
       className="flex justify-center items-center"
     >
       <div
@@ -24,7 +27,25 @@ const Register = () => {
         </div>
         <div className="flex justify-center items-center flex-col">
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <AccountCircle sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <DriveFileRenameOutlineIcon
+              sx={{ color: "action.active", mr: 1, my: 0.5 }}
+            />
+            <TextField
+              id="input-with-sx-name"
+              label="Name"
+              variant="standard"
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <PhoneInTalkIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              id="input-with-sx-phone"
+              label="Phone"
+              variant="standard"
+            />
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+            <AttachEmailIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
             <TextField
               id="input-with-sx-email"
               label="Email"
@@ -53,7 +74,7 @@ const Register = () => {
           </div>
         </div>
         <div className="text-center my-5">
-          <button className="border border-black rounded  px-5 py-1 my-4 ">
+          <button className="border border-gray-500 bg-gray-300 rounded  px-5 py-1 my-4 ">
             <GoogleIcon className="text-red-500" /> Sign in using goole
           </button>
         </div>

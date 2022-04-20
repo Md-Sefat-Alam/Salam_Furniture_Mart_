@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div
-      style={{ minHeight: "70vh" }}
+      style={{ minHeight: "70vh", fontFamily: "roboto" }}
       className="flex justify-center items-center"
     >
       <div
         style={{
           minWidth: "350px",
           minHeight: "400px",
-          backgroundColor: "#EEEEEE",
+          backgroundColor: "#EAEAEA",
         }}
         className="rounded"
       >
@@ -53,7 +53,7 @@ const Login = () => {
           </div>
         </div>
         <div className="text-center my-5">
-          <button className="border border-black rounded  px-5 py-1 my-4 ">
+          <button className="border border-gray-500 bg-gray-300 shadow-inner rounded  px-5 py-1 my-4 ">
             <GoogleIcon className="text-red-500" /> Sign in using goole
           </button>
         </div>

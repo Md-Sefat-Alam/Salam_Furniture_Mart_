@@ -16,6 +16,7 @@ function App() {
       <Header></Header>
       <Nav></Nav>
       <Routes>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/home" element={<Home />}></Route>
         <Route exact path="/aboutus" element={<AboutUs />}></Route>
         <Route exact path="/login" element={<Login />}></Route>
