@@ -1,20 +1,22 @@
 import * as React from "react";
-import { Container, Pagination } from "@mui/material";
+import { Button, Container, Pagination } from "@mui/material";
 import ContentHeader from "../shared/ContentHeader/ContentHeader";
 import ProductShowCart from "../shared/ProductShowCart/ProductShowCart";
 import { Masonry } from "@mui/lab";
 
-function ProductsShow(props) {
+function ProductsShow() {
   return (
     <Container maxWidth="xl">
       <div style={{ minHeight: "80vh" }} className="">
-        <div className="w-full py-10">
+        <div className="w-full pb-10">
           <ContentHeader
             hText={"New Products"}
             dText="all new products here may you choise"
           />
           <div className="flex justify-between">
-            <div className="px-4">oprions</div>
+            <div className="px-4">
+              <Button>Filter</Button>
+            </div>
             <Pagination count={10} />
           </div>
           <Masonry columns={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 3 }} spacing={2}>

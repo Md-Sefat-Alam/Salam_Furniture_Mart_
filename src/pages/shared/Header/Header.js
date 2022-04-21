@@ -1,9 +1,13 @@
 import React from "react";
 import Container from "@mui/material/Container";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import CartAndSearch from "../CartAndSearch/CartAndSearch";
 
 const Header = () => {
+  const location = useLocation();
+  if (location.pathname.includes("/admin")) {
+    return null;
+  }
   return (
     <Container maxWidth="xl">
       <header className="flex flex-col lg:flex-row lg:justify-between items-center">

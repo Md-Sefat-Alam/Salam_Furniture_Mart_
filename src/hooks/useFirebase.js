@@ -4,12 +4,14 @@ import {
   getAuth,
   signInWithPopup,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import firebaseInit from "../firebase/firebase.init";
 
 firebaseInit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
+  const [adminUser, setAdminUser] = useState({});
   const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const auth = getAuth();
@@ -18,9 +20,16 @@ const useFirebase = () => {
       .then((result) => setUser(result.user))
       .catch((error) => setError(error.code));
   };
+  const logOut = () => {
+    signOut(auth)
+      .then(() => {
+        setUser({});
+      })
+      .catch((error) => setError(error.code));
+  };
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      if (user.accessToken) {
+      if (user?.email) {
         setUser(user);
       } else {
         setUser({});
@@ -31,6 +40,10 @@ const useFirebase = () => {
     signInUsingGoogle,
     user,
     error,
+    setUser,
+    logOut,
+    adminUser,
+    setAdminUser,
   };
 };
 export default useFirebase;

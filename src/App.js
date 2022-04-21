@@ -10,7 +10,6 @@ import Footer from "./pages/shared/Footer/Footer";
 import AllProviders from "./contexts/AllProviders";
 import ProductShow from "./pages/ProductShow/ProductShow";
 import ProductsShow from "./pages/ProductsShow/ProductsShow";
-import { Container } from "@mui/material";
 
 function App() {
   return (

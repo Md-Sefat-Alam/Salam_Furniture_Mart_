@@ -1,7 +1,12 @@
 import { Container } from "@mui/material";
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  if (location.pathname.includes("/admin")) {
+    return null;
+  }
   return (
     <div
       style={{ minHeight: "300px" }}
