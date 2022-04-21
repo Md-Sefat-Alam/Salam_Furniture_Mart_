@@ -42,7 +42,14 @@ const Nav = () => {
   };
 
   return (
-    <AppBar sx={{ bgcolor: "#F7F5F2" }} position="sticky">
+    <AppBar
+      sx={{
+        bgcolor: "#fff",
+        boxShadow: "1px 1px 15px gray inset",
+        // borderBottom: "1px solid lightgray",
+      }}
+      position="sticky"
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box
