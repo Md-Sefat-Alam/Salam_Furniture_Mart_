@@ -16,9 +16,6 @@ const TopBar = () => {
   return (
     <Container className="bg-gray-100" maxWidth="xl">
       <div className="text-right ">
-        <Link className="mx-2" to={"/admin"}>
-          Admin Pannel
-        </Link>
         <Link className="mx-2" to={"/login"}>
           Login
         </Link>

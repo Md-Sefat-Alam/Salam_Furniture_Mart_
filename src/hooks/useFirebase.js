@@ -5,6 +5,8 @@ import {
   signInWithPopup,
   onAuthStateChanged,
   signOut,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import firebaseInit from "../firebase/firebase.init";
 
@@ -16,9 +18,13 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
   const auth = getAuth();
   const signInUsingGoogle = () => {
-    signInWithPopup(auth, googleProvider)
-      .then((result) => setUser(result.user))
-      .catch((error) => setError(error.code));
+    return signInWithPopup(auth, googleProvider);
+  };
+  const emailPassRegister = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+  const signInWithEmailPass = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
     signOut(auth)
@@ -36,14 +42,18 @@ const useFirebase = () => {
       }
     });
   }, []);
+  console.log(error);
   return {
     signInUsingGoogle,
     user,
     error,
+    setError,
     setUser,
     logOut,
     adminUser,
     setAdminUser,
+    emailPassRegister,
+    signInWithEmailPass,
   };
 };
 export default useFirebase;
