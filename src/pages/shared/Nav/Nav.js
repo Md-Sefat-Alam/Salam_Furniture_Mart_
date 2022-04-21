@@ -18,8 +18,10 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { Link } from "react-router-dom";
 import CartAndSearch from "../CartAndSearch/CartAndSearch";
+import useAuth from "../../../hooks/useAuth";
 
 const Nav = () => {
+  const { user } = useAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -79,56 +81,88 @@ const Nav = () => {
             >
               <Link to={"/home"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Home
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/new"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     New
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/living"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Living
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/office"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Office
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/bedroom"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Bedroom
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/dining"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Dining
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/door"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Door
                   </Typography>
                 </MenuItem>
               </Link>
               <Link to={"/products/kids"}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography sx={{ color: "black" }} textAlign="center">
+                  <Typography
+                    style={{ fontFamily: "roboto" }}
+                    sx={{ color: "black" }}
+                    textAlign="center"
+                  >
                     Kids
                   </Typography>
                 </MenuItem>
@@ -147,7 +181,7 @@ const Nav = () => {
             {/* ["New", "Living", "Office", "Bedroom", "Dining", "Door", "Kids"] */}
             <Link to={"/home"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -156,7 +190,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/new"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -165,7 +199,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/living"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -174,7 +208,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/office"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -183,7 +217,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/bedroom"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -192,7 +226,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/dining"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -201,7 +235,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/door"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -210,7 +244,7 @@ const Nav = () => {
             </Link>
             <Link to={"/products/kids"}>
               <Button
-                style={{ margin: "10px" }}
+                style={{ margin: "10px", fontFamily: "roboto" }}
                 className="hover:text-gray-900"
                 sx={{ my: 2, color: "gray", display: "block" }}
               >
@@ -222,7 +256,10 @@ const Nav = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleClick} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar
+                  alt={user.displayName ? user.displayName : user.email}
+                  src={user.photoURL}
+                />
               </IconButton>
             </Tooltip>
             <Menu

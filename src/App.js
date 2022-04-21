@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import Nav from "./pages/shared/Nav/Nav";
 import Header from "./pages/shared/Header/Header";
@@ -8,22 +8,26 @@ import TopBar from "./pages/Home/TopBar/TopBar";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Footer from "./pages/shared/Footer/Footer";
+import AllProviders from "./contexts/AllProviders";
+import ProductShow from "./pages/ProductShow/ProductShow";
 
 function App() {
   return (
-    <BrowserRouter>
-      <TopBar />
-      <Header></Header>
-      <Nav></Nav>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/home" element={<Home />}></Route>
-        <Route exact path="/aboutus" element={<AboutUs />}></Route>
-        <Route exact path="/login" element={<Login />}></Route>
-        <Route exact path="/register" element={<Register />}></Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <AllProviders>
+      <BrowserRouter>
+        <TopBar />
+        <Header></Header>
+        <Nav></Nav>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/home" element={<Home />}></Route>
+          <Route exact path="/product/:id" element={<ProductShow />}></Route>
+          <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/register" element={<Register />}></Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </AllProviders>
   );
 }
 

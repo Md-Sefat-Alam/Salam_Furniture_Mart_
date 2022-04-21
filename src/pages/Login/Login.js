@@ -4,8 +4,10 @@ import { Box, Button, TextField } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+  const { signInUsingGoogle } = useAuth();
   return (
     <div
       style={{ minHeight: "70vh", fontFamily: "roboto" }}
@@ -53,7 +55,10 @@ const Login = () => {
           </div>
         </div>
         <div className="text-center my-5">
-          <button className="border border-gray-500 bg-gray-300 shadow-inner rounded  px-5 py-1 my-4 ">
+          <button
+            onClick={signInUsingGoogle}
+            className="border border-gray-500 bg-gray-300 shadow-inner rounded  px-5 py-1 my-4 "
+          >
             <GoogleIcon className="text-red-500" /> Sign in using goole
           </button>
         </div>

@@ -1,8 +1,13 @@
 import { Container } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
 
 const TopBar = () => {
+  const { user } = useAuth();
+  if (user.email) {
+    return null;
+  }
   return (
     <Container className="bg-gray-100" maxWidth="xl">
       <div className="text-right ">

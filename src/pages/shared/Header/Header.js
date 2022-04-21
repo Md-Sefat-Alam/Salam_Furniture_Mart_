@@ -19,12 +19,15 @@ const Header = () => {
             </p>
           </div>
         </div>
-        <div className="order-3 lg:order-2 select-none cursor-pointer">
+        <div
+          style={{}}
+          className="order-3 lg:order-2 select-none cursor-pointer"
+        >
           <Link to={"/"}>
             <img
-              className=""
-              style={{ width: "250px" }}
-              src="./images/logo/Salam_furniture_logo1.png"
+              className="py-2"
+              style={{ width: "200px" }}
+              src="https://i.ibb.co/MsDWXFB/Salam-furniture-logo1.png"
               alt="logo"
             />
           </Link>
