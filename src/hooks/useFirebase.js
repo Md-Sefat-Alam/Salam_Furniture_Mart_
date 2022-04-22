@@ -15,25 +15,32 @@ firebaseInit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
-  const googleProvider = new GoogleAuthProvider();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const auth = getAuth();
+
+  const googleProvider = new GoogleAuthProvider();
   const signInUsingGoogle = () => {
+    setIsLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
   const emailPassRegister = (email, password) => {
+    setIsLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signInWithEmailPass = (email, password) => {
+    setIsLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
+    setIsLoading(true);
     signOut(auth)
       .then(() => {
         setUser({});
         setIsAdmin(false);
       })
-      .catch((error) => setError(error.code));
+      .catch((error) => setError(error.code))
+      .finally(() => setIsLoading(false));
   };
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -43,6 +50,7 @@ const useFirebase = () => {
         setUser({});
         setIsAdmin(false);
       }
+      // setIsLoading(false);
     });
   }, []);
   useEffect(() => {
@@ -60,18 +68,19 @@ const useFirebase = () => {
     }
   }, [user]);
 
-  console.log(isAdmin);
   return {
     signInUsingGoogle,
+    user,
     isAdmin,
     setIsAdmin,
-    user,
     error,
     setError,
     setUser,
     logOut,
     emailPassRegister,
     signInWithEmailPass,
+    setIsLoading,
+    isLoading,
   };
 };
 export default useFirebase;

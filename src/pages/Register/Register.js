@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Box, Button, TextField } from "@mui/material";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,10 +6,11 @@ import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutli
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 import useAuth from "../../hooks/useAuth";
+import GoogleLogin from "../shared/GoogleLogin/GoogleLogin";
 const axios = require("axios");
 
 const Register = () => {
-  const { emailPassRegister, setUser, setError } = useAuth();
+  const { emailPassRegister, setUser, setError, setIsLoading } = useAuth();
   const navigate = useNavigate();
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -44,7 +44,6 @@ const Register = () => {
         break;
     }
   };
-  console.log(registerData);
   const handleRegister = () => {
     if (
       registerData.email &&
@@ -52,6 +51,7 @@ const Register = () => {
       registerData.name &&
       registerData.phone
     ) {
+      setIsLoading(true);
       emailPassRegister(registerData.email, registerData.password)
         .then((userCredential) => {
           setUser(userCredential.user);
@@ -66,7 +66,8 @@ const Register = () => {
             })
             .catch((error) => setError(error));
         })
-        .catch((error) => setError(error.code));
+        .catch((error) => setError(error.code))
+        .finally(() => setIsLoading(false));
     } else {
       alert("Enter Text Propar");
     }
@@ -140,11 +141,7 @@ const Register = () => {
             </p>
           </div>
         </div>
-        <div className="text-center my-5">
-          <button className="border border-gray-500 bg-gray-300 rounded  px-5 py-1 my-4 ">
-            <GoogleIcon className="text-red-500" /> Sign in using goole
-          </button>
-        </div>
+        <GoogleLogin />
       </div>
     </div>
   );

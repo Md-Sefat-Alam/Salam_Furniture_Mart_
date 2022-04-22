@@ -2,9 +2,16 @@ import React from "react";
 import Container from "@mui/material/Container";
 import { Link, useLocation } from "react-router-dom";
 import CartAndSearch from "../CartAndSearch/CartAndSearch";
+import useAuth from "../../../hooks/useAuth";
 
-const Header = () => {
+const Header = ({ setIsLoadingTemp }) => {
   const location = useLocation();
+  const { isLoading } = useAuth();
+  if (isLoading) {
+    setIsLoadingTemp(true);
+  } else {
+    setIsLoadingTemp(false);
+  }
   if (location.pathname.includes("/dashboard")) {
     return null;
   }

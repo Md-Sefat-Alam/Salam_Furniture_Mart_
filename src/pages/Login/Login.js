@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
 import { Box, Button, TextField } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import GoogleLogin from "../shared/GoogleLogin/GoogleLogin";
 
 const Login = () => {
-  const { signInUsingGoogle, signInWithEmailPass, setUser, setError } =
-    useAuth();
+  const { signInWithEmailPass, setUser, setError, setIsLoading } = useAuth();
   const [loginData, setLoginData] = useState({ email: "", password: "" });
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,12 +30,14 @@ const Login = () => {
   };
   const handleLogin = () => {
     if (loginData.email && loginData.password) {
+      setIsLoading(true);
       signInWithEmailPass(loginData.email, loginData.password)
         .then((userCredential) => {
           setUser(userCredential.user);
           navigate(redirectUri);
         })
-        .catch((error) => setError(error.code));
+        .catch((error) => setError(error.code))
+        .finally(() => setIsLoading(false));
     }
   };
   return (
@@ -87,21 +88,7 @@ const Login = () => {
             </p>
           </div>
         </div>
-        <div className="text-center my-5">
-          <button
-            onClick={() => {
-              signInUsingGoogle()
-                .then((result) => {
-                  setUser(result.user);
-                  navigate(redirectUri);
-                })
-                .catch((error) => setError(error.code));
-            }}
-            className="border border-gray-500 bg-gray-300 shadow-inner rounded  px-5 py-1 my-4 "
-          >
-            <GoogleIcon className="text-red-500" /> Sign in using goole
-          </button>
-        </div>
+        <GoogleLogin />
       </div>
     </div>
   );

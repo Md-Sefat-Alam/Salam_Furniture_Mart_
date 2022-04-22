@@ -19,46 +19,60 @@ import ManageOrders from "./pages/Dashboard/Admin/ManageOrders/ManageOrders";
 import AddReview from "./pages/Dashboard/User/AddReview/AddReview";
 import Pay from "./pages/Dashboard/User/pay/Pay";
 import SelectAddTopRatedProduct from "./pages/Dashboard/Admin/SelectAddTopRatedProduct/SelectAddTopRatedProduct";
+import PrivateRoute from "./pages/PrivateRoute/PrivateRoute";
+import LoadingProgress from "./pages/LoadingProgress/LoadingProgress";
+import { useState } from "react";
 
 function App() {
-  const { isAdmin } = useFirebase();
-  console.log(isAdmin);
+  const { isAdmin, user } = useFirebase();
+  const [isLoadingTemp, setIsLoadingTemp] = useState(true);
+
   return (
     <AllProviders>
       <BrowserRouter>
         <TopBar />
-        <Header></Header>
+        <Header setIsLoadingTemp={setIsLoadingTemp}></Header>
         <Nav></Nav>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route exact path="product/:id" element={<ProductShow />} />
-          <Route exact path="products/:type" element={<ProductsShow />} />
-          <Route path="dashboard" element={<DashboardHome />}>
-            {isAdmin.isAdmin === true ? (
-              <>
-                <Route path="addproduct" element={<AddProduct />} />
-                <Route path="manage-orders" element={<ManageOrders />} />
-                <Route path="make-admin" element={<MakeAdmin />} />
-                <Route path="manage-products" element={<AddProduct />} />
-                <Route
-                  path="select-home-slider-item"
-                  element={<SelectAddTopRatedProduct />}
-                />
-              </>
-            ) : (
-              <>
-                <Route path="myorders" element={<MyOrders />} />
-                <Route path="add-review" element={<AddReview />} />
-                {/* <Route path="add-review/:id" element={<AddReview />} /> */}
-                <Route path="pay" element={<Pay />} />
-              </>
-            )}
-            <Route path="link2" element={<Home />} />
-          </Route>
-          <Route exact path="login" element={<Login />} />
-          <Route exact path="register" element={<Register />} />
-        </Routes>
+        <LoadingProgress isLoadingTemp={isLoadingTemp}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="home" element={<Home />} />
+            <Route exact path="product/:id" element={<ProductShow />} />
+            <Route exact path="products/:type" element={<ProductsShow />} />
+
+            <Route
+              path="dashboard"
+              element={
+                <PrivateRoute user={user} isLoadingTemp={isLoadingTemp}>
+                  <DashboardHome />
+                </PrivateRoute>
+              }
+            >
+              {isAdmin.isAdmin === true ? (
+                <>
+                  <Route path="addproduct" element={<AddProduct />} />
+                  <Route path="manage-orders" element={<ManageOrders />} />
+                  <Route path="make-admin" element={<MakeAdmin />} />
+                  <Route path="manage-products" element={<AddProduct />} />
+                  <Route
+                    path="select-home-slider-item"
+                    element={<SelectAddTopRatedProduct />}
+                  />
+                </>
+              ) : (
+                <>
+                  <Route path="myorders" element={<MyOrders />} />
+                  <Route path="add-review" element={<AddReview />} />
+                  {/* <Route path="add-review/:id" element={<AddReview />} /> */}
+                  <Route path="pay" element={<Pay />} />
+                </>
+              )}
+              <Route path="link2" element={<Home />} />
+            </Route>
+            <Route exact path="login" element={<Login />} />
+            <Route exact path="register" element={<Register />} />
+          </Routes>
+        </LoadingProgress>
         <Footer />
       </BrowserRouter>
     </AllProviders>
