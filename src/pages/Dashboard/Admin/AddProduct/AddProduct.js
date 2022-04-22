@@ -12,6 +12,7 @@ import React, { useState, useEffect } from "react";
 import ContentHeader from "../../../shared/ContentHeader/ContentHeader";
 import Input from "@mui/material/Input";
 import Button from "@mui/material/Button";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const AddProduct = () => {
   const [typeLoading, setTypeLoading] = useState(false);
@@ -29,12 +30,11 @@ const AddProduct = () => {
   };
 
   useEffect(() => {
-    setTypeLoading(true);
     if (values.pType) {
+      setTypeLoading(true);
       axios
         .get(`http://localhost:5000/product-count/${values.pType}`)
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
             const { productCount } = res.data;
             const id = `${values.pType}${1000 + productCount + 1}`;
@@ -60,8 +60,16 @@ const AddProduct = () => {
         .then((res) => {
           // console.log(res);
           if (res.status === 200) {
-            e.reset();
-            alert("Added an product");
+            setValues({
+              pType: "",
+              pName: "",
+              pId: "",
+              pPrice: 0,
+              imgLink: "",
+              pDescription: "",
+            });
+            window.alert("Added an product");
+            e.target.reset();
           }
         })
         .catch((e) => {});
@@ -70,6 +78,9 @@ const AddProduct = () => {
 
   return (
     <div>
+      <div className="flex justify-center absolute">
+        {typeLoading && <CircularProgress />}
+      </div>
       <ContentHeader
         hText={"Add an Exciting Product"}
         dText="Please all text field fill by current value"
