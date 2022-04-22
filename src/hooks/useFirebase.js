@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import firebaseInit from "../firebase/firebase.init";
+import axios from "axios";
 
 firebaseInit();
 const useFirebase = () => {
@@ -16,6 +17,7 @@ const useFirebase = () => {
   const [adminUser, setAdminUser] = useState({});
   const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
+  const [isAdmin, setIsAdmin] = useState(false);
   const auth = getAuth();
   const signInUsingGoogle = () => {
     return signInWithPopup(auth, googleProvider);
@@ -42,9 +44,26 @@ const useFirebase = () => {
       }
     });
   }, []);
-  console.log(error);
+  useEffect(() => {
+    if (user.email) {
+      axios
+        .get(`http://localhost:5000/isadmin/${user.email}`)
+        .then((res) => {
+          if (res.status === 200) {
+            setIsAdmin(res.data);
+          }
+        })
+        .catch((error) => {});
+    } else {
+      setIsAdmin({ isAdmin: null });
+    }
+  }, [user]);
+
+  console.log(isAdmin);
   return {
     signInUsingGoogle,
+    isAdmin,
+    setIsAdmin,
     user,
     error,
     setError,

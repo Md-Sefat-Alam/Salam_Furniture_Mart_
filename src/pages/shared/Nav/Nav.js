@@ -19,9 +19,10 @@ import Logout from "@mui/icons-material/Logout";
 import { Link, useLocation } from "react-router-dom";
 import CartAndSearch from "../CartAndSearch/CartAndSearch";
 import useAuth from "../../../hooks/useAuth";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const Nav = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, isAdmin } = useAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -328,6 +329,14 @@ const Nav = () => {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
+                <Link to={"/dashboard"}>
+                  <MenuItem>
+                    <ListItemIcon>
+                      <DashboardIcon fontSize="small" />
+                    </ListItemIcon>
+                    Admin Dashboard
+                  </MenuItem>
+                </Link>
                 <MenuItem onClick={() => logOut()}>
                   <ListItemIcon>
                     <Logout fontSize="small" />
