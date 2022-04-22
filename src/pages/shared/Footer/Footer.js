@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 const Footer = () => {
   const location = useLocation();
-  if (location.pathname.includes("/admin")) {
+  if (location.pathname.includes("/dashboard")) {
     return null;
   }
   return (

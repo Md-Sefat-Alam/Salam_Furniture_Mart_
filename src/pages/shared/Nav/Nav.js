@@ -42,7 +42,7 @@ const Nav = () => {
     setAnchorEl(null);
   };
   const location = useLocation();
-  if (location.pathname.includes("/admin")) {
+  if (location.pathname.includes("/dashboard")) {
     return <div></div>;
   }
 
@@ -329,14 +329,25 @@ const Nav = () => {
                   </ListItemIcon>
                   Settings
                 </MenuItem>
-                <Link to={"/dashboard"}>
-                  <MenuItem>
-                    <ListItemIcon>
-                      <DashboardIcon fontSize="small" />
-                    </ListItemIcon>
-                    Admin Dashboard
-                  </MenuItem>
-                </Link>
+                {isAdmin.isAdmin === true ? (
+                  <Link to={"/dashboard"}>
+                    <MenuItem>
+                      <ListItemIcon>
+                        <DashboardIcon fontSize="small" />
+                      </ListItemIcon>
+                      Admin Dashboard
+                    </MenuItem>
+                  </Link>
+                ) : (
+                  <Link to={"/dashboard"}>
+                    <MenuItem>
+                      <ListItemIcon>
+                        <DashboardIcon fontSize="small" />
+                      </ListItemIcon>
+                      My Orders
+                    </MenuItem>
+                  </Link>
+                )}
                 <MenuItem onClick={() => logOut()}>
                   <ListItemIcon>
                     <Logout fontSize="small" />

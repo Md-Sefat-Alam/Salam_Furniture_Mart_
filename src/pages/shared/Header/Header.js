@@ -5,7 +5,7 @@ import CartAndSearch from "../CartAndSearch/CartAndSearch";
 
 const Header = () => {
   const location = useLocation();
-  if (location.pathname.includes("/admin")) {
+  if (location.pathname.includes("/dashboard")) {
     return null;
   }
   return (

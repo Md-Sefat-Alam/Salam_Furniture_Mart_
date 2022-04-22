@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 const TopBar = () => {
   const { user } = useAuth();
   const location = useLocation();
-  if (location.pathname.includes("/admin")) {
+  if (location.pathname.includes("/dashboard")) {
     return null;
   }
   if (user.email) {

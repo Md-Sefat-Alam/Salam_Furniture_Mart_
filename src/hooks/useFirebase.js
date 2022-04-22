@@ -14,7 +14,6 @@ import axios from "axios";
 firebaseInit();
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [adminUser, setAdminUser] = useState({});
   const [error, setError] = useState("");
   const googleProvider = new GoogleAuthProvider();
   const [isAdmin, setIsAdmin] = useState(false);
@@ -32,6 +31,7 @@ const useFirebase = () => {
     signOut(auth)
       .then(() => {
         setUser({});
+        setIsAdmin(false);
       })
       .catch((error) => setError(error.code));
   };
@@ -41,6 +41,7 @@ const useFirebase = () => {
         setUser(user);
       } else {
         setUser({});
+        setIsAdmin(false);
       }
     });
   }, []);
@@ -69,8 +70,6 @@ const useFirebase = () => {
     setError,
     setUser,
     logOut,
-    adminUser,
-    setAdminUser,
     emailPassRegister,
     signInWithEmailPass,
   };
