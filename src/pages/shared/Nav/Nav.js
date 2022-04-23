@@ -330,7 +330,7 @@ const Nav = () => {
                   Settings
                 </MenuItem>
                 {isAdmin.isAdmin === true ? (
-                  <Link to={"/dashboard"}>
+                  <Link to={"/dashboard/manage-orders"}>
                     <MenuItem>
                       <ListItemIcon>
                         <DashboardIcon fontSize="small" />
@@ -339,7 +339,7 @@ const Nav = () => {
                     </MenuItem>
                   </Link>
                 ) : (
-                  <Link to={"/dashboard"}>
+                  <Link to={"/dashboard/myorders"}>
                     <MenuItem>
                       <ListItemIcon>
                         <DashboardIcon fontSize="small" />
