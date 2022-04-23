@@ -14,9 +14,11 @@ import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 import { SupervisedUserCircleOutlined } from "@mui/icons-material";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const ProductShow = () => {
   const { productId } = useParams();
+  const { user } = useAuth();
   const [productData, setProductData] = useState({});
   useEffect(() => {
     axios
@@ -67,7 +69,39 @@ const ProductShow = () => {
                     readOnly
                   />
                 </p>
-                <Button variant="outlined">
+                <Button
+                  onClick={() => {
+                    if (
+                      window.confirm(
+                        "Add to cart not work now! for short time :) ,Click Ok for direct Order it"
+                      )
+                    ) {
+                      axios
+                        .post("http://localhost:5000/buy-req", {
+                          email: user.email,
+                          reqDate: new Date().toLocaleDateString(),
+                          reqTime: new Date().toLocaleTimeString(),
+                          pId: productData.pId,
+                          status: "pending",
+                          payStatus: "unpaid",
+                          price: productData.pPrice,
+                          pName: productData.pName,
+                          imgLink: productData.imgLink,
+                        })
+                        .then((res) => {
+                          console.log(res);
+                          if (res.status === 200) {
+                            alert(
+                              "Your buy request in notted, please pay now before approved"
+                            );
+                            // pay link here
+                          }
+                        })
+                        .catch((error) => {});
+                    }
+                  }}
+                  variant="outlined"
+                >
                   <ShoppingCartIcon /> Add to cart
                 </Button>
               </div>

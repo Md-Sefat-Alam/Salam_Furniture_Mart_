@@ -37,7 +37,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="home" element={<Home />} />
-            <Route exact path="product/:productId" element={<ProductShow />} />
+            <Route
+              exact
+              path="product/:productId"
+              element={
+                <PrivateRoute>
+                  <ProductShow />
+                </PrivateRoute>
+              }
+            />
             <Route
               exact
               path="products/:productType"
@@ -68,7 +76,7 @@ function App() {
                   <Route path="myorders" element={<MyOrders />} />
                   <Route path="add-review" element={<AddReview />} />
                   {/* <Route path="add-review/:id" element={<AddReview />} /> */}
-                  <Route path="pay" element={<Pay />} />
+                  <Route path="pay/:productId" element={<Pay />} />
                 </>
               )}
               <Route path="link2" element={<Home />} />

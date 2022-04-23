@@ -17,6 +17,7 @@ const useFirebase = () => {
   const [error, setError] = useState("");
   const [isAdmin, setIsAdmin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
   const auth = getAuth();
 
   const googleProvider = new GoogleAuthProvider();
@@ -81,6 +82,8 @@ const useFirebase = () => {
     signInWithEmailPass,
     setIsLoading,
     isLoading,
+    message,
+    setMessage,
   };
 };
 export default useFirebase;
