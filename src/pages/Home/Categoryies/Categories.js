@@ -34,63 +34,77 @@ const Categories = () => {
             }}
           >
             <CategoryCart
+              path="/products/sofa"
               cName={"Sofa"}
               icon={<ChairIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/centerTable"
               cName={"Center Table"}
               icon={<TableBarIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/divan"
               cName={"Divan"}
               icon={<ChairIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/tvCabinet"
               cName={"TV Cabinet"}
               icon={<ChairIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/openSelves"
               cName={"Open Shelves"}
               icon={<KitchenIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/diningChair"
               cName={"Dining chair"}
               icon={<ChairIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/dinnerWagons"
               cName={"Dinner Wagon"}
               icon={<TableBarIcon fontSize="large" />}
             />
-            <CategoryCart cName={"Bed"} icon={<BedIcon fontSize="large" />} />
             <CategoryCart
+              path="/products/bed"
+              cName={"Bed"}
+              icon={<BedIcon fontSize="large" />}
+            />
+            <CategoryCart
+              path="/products/dresingTable"
               cName={"Dressing Table"}
               icon={<TableBarIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/wardrobe"
               cName={"Wardrobe"}
               icon={<BedIcon fontSize="large" />}
             />
             <CategoryCart
-              cName={"Wardrobe"}
-              icon={<BedIcon fontSize="large" />}
-            />
-            <CategoryCart
+              path="/products/readingTable"
               cName={"Reading Table"}
               icon={<TableRestaurantIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/door"
               cName={"Door"}
               icon={<SensorDoorIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/kitchen"
               cName={"Kitchen"}
               icon={<CountertopsIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/office"
               cName={"Office"}
               icon={<ChairAltIcon fontSize="large" />}
             />
             <CategoryCart
+              path="/products/executiveTable"
               cName={"Executive Table"}
               icon={<TableRestaurantIcon fontSize="large" />}
             />

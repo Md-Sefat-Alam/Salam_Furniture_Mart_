@@ -1,53 +1,86 @@
-import { Button, Container, Rating, TextField } from "@mui/material";
-import React from "react";
+import {
+  Button,
+  CircularProgress,
+  Container,
+  Rating,
+  TextField,
+} from "@mui/material";
+import React, { useState, useEffect } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ContentHeader from "../shared/ContentHeader/ContentHeader";
 import { Box } from "@mui/system";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 import { SupervisedUserCircleOutlined } from "@mui/icons-material";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductShow = () => {
+  const { productId } = useParams();
+  const [productData, setProductData] = useState({});
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/product/${productId}`)
+      .then((res) => {
+        if (res.status === 200) {
+          setProductData(res.data);
+        }
+      })
+      .catch((error) => {})
+      .finally(() => {});
+  }, [productId]);
   return (
     <div style={{ minHeight: "80vh" }}>
       <Container>
-        <div className="flex justify-center my-10">
-          <div style={{ minHeight: "350px" }} className="h-full bg-gray-400">
-            <img
-              style={{ height: "350px" }}
-              src="https://cdn.pixabay.com/photo/2021/08/27/01/33/bedroom-6577523_960_720.jpg"
-              alt="img"
-            />
-          </div>
-          <div
-            style={{ minHeight: "350px" }}
-            className="flex-grow h-full bg-gray-100 p-4 flex items-end"
-          >
-            <div>
-              <h3
-                style={{ fontFamily: "roboto" }}
-                className="text-3xl text-gray-900"
-              >
-                Product Name abcd here
-              </h3>
-              <p className="text-2xl text-gray-500">
-                <span>$</span> 530
-              </p>
-              <p>
-                <Rating
-                  name="half-rating-read"
-                  size="large"
-                  value={3.5}
-                  precision={0.5}
-                  readOnly
-                />
-              </p>
-              <Button variant="outlined">
-                <ShoppingCartIcon /> Add to cart
-              </Button>
+        {productData?.pId ? (
+          <div className="flex justify-center my-10">
+            <div style={{ minHeight: "350px" }} className="h-full bg-gray-400">
+              <img
+                style={{ height: "350px" }}
+                src={productData.imgLink}
+                alt={"photo" + productData.pName}
+              />
+            </div>
+            <div
+              style={{ minHeight: "350px" }}
+              className="flex-grow h-full bg-gray-100 p-4 flex items-end"
+            >
+              <div>
+                <h3
+                  style={{ fontFamily: "roboto" }}
+                  className="text-3xl text-gray-900"
+                >
+                  {productData.pName}
+                </h3>
+                <p className="text-2xl text-gray-500">
+                  <span>Product Id:</span> {productData.pId}
+                </p>
+                <p className="text-2xl text-gray-500">
+                  <span>$</span> {productData.pPrice}
+                </p>
+                <p>
+                  <Rating
+                    name="half-rating-read"
+                    size="large"
+                    value={3.5}
+                    precision={0.5}
+                    readOnly
+                  />
+                </p>
+                <Button variant="outlined">
+                  <ShoppingCartIcon /> Add to cart
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div
+            style={{ minHeight: "350px" }}
+            className="flex justify-center items-center"
+          >
+            <CircularProgress />
+          </div>
+        )}
         <div className="py-24" style={{ backgroundColor: "#EEEEEE" }}>
           <ContentHeader
             hText={"Product Details"}

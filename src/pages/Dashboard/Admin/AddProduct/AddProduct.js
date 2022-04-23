@@ -58,7 +58,6 @@ const AddProduct = () => {
           postTime: new Date().toLocaleTimeString(),
         })
         .then((res) => {
-          // console.log(res);
           if (res.status === 200) {
             setValues({
               pType: "",
@@ -116,6 +115,8 @@ const AddProduct = () => {
                   <MenuItem value={"tvCabinet"}>TV Cabinet</MenuItem>
                   <MenuItem value={"diningChair"}>Dining Chair</MenuItem>
                   <MenuItem value={"wardrobe"}>Wardrobe</MenuItem>
+                  <MenuItem value={"openSelves"}>Open Shelves</MenuItem>
+                  <MenuItem value={"dinnerWagons"}>Dinner Wagons</MenuItem>
                 </Select>
               </FormControl>
             </Box>
