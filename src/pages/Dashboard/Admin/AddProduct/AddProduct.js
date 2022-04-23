@@ -33,7 +33,9 @@ const AddProduct = () => {
     if (values.pType) {
       setTypeLoading(true);
       axios
-        .get(`http://localhost:5000/product-count/${values.pType}`)
+        .get(
+          `https://salam-furniture-mart.herokuapp.com/product-count/${values.pType}`
+        )
         .then((res) => {
           if (res.status === 200) {
             const { productCount } = res.data;
@@ -52,7 +54,7 @@ const AddProduct = () => {
     e.preventDefault();
     if (values.pType) {
       axios
-        .post("http://localhost:5000/product", {
+        .post("https://salam-furniture-mart.herokuapp.com/product", {
           ...values,
           postDate: new Date().toLocaleDateString(),
           postTime: new Date().toLocaleTimeString(),

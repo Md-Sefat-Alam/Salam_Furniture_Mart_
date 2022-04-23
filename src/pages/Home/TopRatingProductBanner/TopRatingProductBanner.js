@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const TopRatingProductBanner = () => {
   const [topRatedProduct, setTopRatedProduct] = useState({});
   useEffect(() => {
-    fetch("http://localhost:5000/popular-raging-product")
+    fetch("https://salam-furniture-mart.herokuapp.com/popular-raging-product")
       .then((res) => res.json())
       .then((data) => setTopRatedProduct(data));
   }, []);

@@ -20,7 +20,7 @@ const ManageOrders = () => {
   const [allOrderData, setAllOrderData] = useState([]);
   const [forceUpdate, setForceUpdate] = useState(1);
   useEffect(() => {
-    fetch(`http://localhost:5000/all-orders`)
+    fetch(`https://salam-furniture-mart.herokuapp.com/all-orders`)
       .then((res) => res.json())
       .then((data) => setAllOrderData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));

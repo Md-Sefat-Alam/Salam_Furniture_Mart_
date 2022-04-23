@@ -57,7 +57,7 @@ const Register = () => {
           setUser(userCredential.user);
           navigate("/home");
           axios
-            .post("http://localhost:5000/userdata", {
+            .post("https://salam-furniture-mart.herokuapp.com/userdata", {
               ...registerData,
               role: "user",
             })

@@ -11,7 +11,7 @@ function ProductsShow() {
   const [products, setProducts] = React.useState({});
   React.useEffect(() => {
     axios
-      .get(`http://localhost:5000/products/${productType}`)
+      .get(`https://salam-furniture-mart.herokuapp.com/products/${productType}`)
       .then((res) => {
         if (res.status === 200) {
           setProducts(res.data);

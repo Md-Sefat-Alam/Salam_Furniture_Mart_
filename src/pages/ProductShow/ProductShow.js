@@ -23,7 +23,7 @@ const ProductShow = () => {
   const [productData, setProductData] = useState({});
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/product/${productId}`)
+      .get(`https://salam-furniture-mart.herokuapp.com/product/${productId}`)
       .then((res) => {
         if (res.status === 200) {
           setProductData(res.data);
@@ -81,17 +81,20 @@ const ProductShow = () => {
                       )
                     ) {
                       axios
-                        .post("http://localhost:5000/buy-req", {
-                          email: user.email,
-                          reqDate: new Date().toLocaleDateString(),
-                          reqTime: new Date().toLocaleTimeString(),
-                          pId: productData.pId,
-                          status: "pending",
-                          payStatus: "unpaid",
-                          price: productData.pPrice,
-                          pName: productData.pName,
-                          imgLink: productData.imgLink,
-                        })
+                        .post(
+                          "https://salam-furniture-mart.herokuapp.com/buy-req",
+                          {
+                            email: user.email,
+                            reqDate: new Date().toLocaleDateString(),
+                            reqTime: new Date().toLocaleTimeString(),
+                            pId: productData.pId,
+                            status: "pending",
+                            payStatus: "unpaid",
+                            price: productData.pPrice,
+                            pName: productData.pName,
+                            imgLink: productData.imgLink,
+                          }
+                        )
                         .then((res) => {
                           console.log(res);
                           if (res.status === 200) {

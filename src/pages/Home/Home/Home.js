@@ -9,14 +9,14 @@ import TopRatingProductBanner from "../TopRatingProductBanner/TopRatingProductBa
 import axios from "axios";
 import HomeProduct3Show from "../../shared/HomeProduct3Show/HomeProduct3Show";
 
-// http://localhost:5000/product/3/bed
+// https://salam-furniture-mart.herokuapp.com/product/3/bed
 const Home = () => {
   const [bedData, setBedData] = useState({});
   const [sofaData, setSofaData] = useState({});
   const [officeData, setOfficeData] = useState({});
   useEffect(() => {
     axios
-      .get("http://localhost:5000/product/3/bed")
+      .get("https://salam-furniture-mart.herokuapp.com/product/3/bed")
       .then((res) => {
         if (res.status === 200) {
           setBedData(res.data);
@@ -27,7 +27,7 @@ const Home = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/product/3/sofa")
+      .get("https://salam-furniture-mart.herokuapp.com/product/3/sofa")
       .then((res) => {
         if (res.status === 200) {
           setSofaData(res.data);
@@ -38,7 +38,7 @@ const Home = () => {
   }, []);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/product/3/office")
+      .get("https://salam-furniture-mart.herokuapp.com/product/3/office")
       .then((res) => {
         if (res.status === 200) {
           setOfficeData(res.data);

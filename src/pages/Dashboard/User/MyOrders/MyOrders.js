@@ -18,7 +18,7 @@ const MyOrders = () => {
   const [myOrderData, setMyOrderData] = useState([]);
   const [forceUpdate, setForceUpdate] = useState(1);
   useEffect(() => {
-    fetch(`http://localhost:5000/my-orders/${user.email}`)
+    fetch(`https://salam-furniture-mart.herokuapp.com/my-orders/${user.email}`)
       .then((res) => res.json())
       .then((data) => setMyOrderData(data))
       .catch((error) => setError("Failed to Database Connection Try again"));
@@ -28,7 +28,9 @@ const MyOrders = () => {
     if (user.email) {
       if (window.confirm("Confirmation Click Ok to Delete")) {
         axios
-          .delete(`http://localhost:5000/my-orders/delete/${user.email}/${pId}`)
+          .delete(
+            `https://salam-furniture-mart.herokuapp.com/my-orders/delete/${user.email}/${pId}`
+          )
           .then((res) => {
             if (res.status === 200) {
               setForceUpdate(forceUpdate + 1);

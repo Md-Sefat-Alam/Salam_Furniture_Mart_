@@ -57,7 +57,7 @@ const useFirebase = () => {
   useEffect(() => {
     if (user.email) {
       axios
-        .get(`http://localhost:5000/isadmin/${user.email}`)
+        .get(`https://salam-furniture-mart.herokuapp.com/isadmin/${user.email}`)
         .then((res) => {
           if (res.status === 200) {
             setIsAdmin(res.data);
