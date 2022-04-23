@@ -114,14 +114,14 @@ function DashboardHome(props) {
                 <ListItemText primary={"Add Review"} />
               </ListItem>
             </Link>
-            <Link onClick={handleDrawerToggle} to="pay">
+            {/* <Link onClick={handleDrawerToggle} to="pay">
               <ListItem button>
                 <ListItemIcon>
                   <PaymentsIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Pay"} />
               </ListItem>
-            </Link>
+            </Link> */}
           </>
         )}
       </List>

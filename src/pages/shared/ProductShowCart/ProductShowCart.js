@@ -18,7 +18,7 @@ const ProductShowCart = ({ imgLink, ratingValue, productId }) => {
     >
       <Paper elevation={0}>
         <div className="relative">
-          <div className="bg-gray-500" style={{ height: "300px" }}>
+          <div className="flex justify-center" style={{ height: "300px" }}>
             <img style={{ height: "300px" }} src={imgLink} alt="img" />
           </div>
           <div className="absolute top-1 right-1">

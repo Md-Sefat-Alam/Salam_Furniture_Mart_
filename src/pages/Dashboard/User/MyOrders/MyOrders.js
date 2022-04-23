@@ -24,19 +24,21 @@ const MyOrders = () => {
       .catch((error) => setError("Failed to Database Connection Try again"));
   }, [forceUpdate]);
 
-  const handleDelete = (_id) => {
-    if (window.confirm("Confirmation Click Ok to Delete")) {
-      axios
-        .delete(
-          `https://action-camera-engin.herokuapp.com/myorders-remove-one/${_id}`
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            setForceUpdate(forceUpdate + 1);
-            setMessage("Delete Successfull");
-          }
-        })
-        .catch((error) => setError("Database connection problem"));
+  const handleDelete = (pId) => {
+    if (user.email) {
+      if (window.confirm("Confirmation Click Ok to Delete")) {
+        axios
+          .delete(`http://localhost:5000/my-orders/delete/${user.email}/${pId}`)
+          .then((res) => {
+            if (res.status === 200) {
+              setForceUpdate(forceUpdate + 1);
+              setMessage("Delete Successfull");
+            }
+          })
+          .catch((error) => setError("Database connection problem"));
+      }
+    } else {
+      alert("Please Login again");
     }
   };
   return (

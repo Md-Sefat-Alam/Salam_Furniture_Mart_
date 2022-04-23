@@ -12,12 +12,13 @@ import { Box } from "@mui/system";
 import DriveFileRenameOutlineIcon from "@mui/icons-material/DriveFileRenameOutline";
 import AttachEmailIcon from "@mui/icons-material/AttachEmail";
 import { SupervisedUserCircleOutlined } from "@mui/icons-material";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
 const ProductShow = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const { user } = useAuth();
   const [productData, setProductData] = useState({});
   useEffect(() => {
@@ -36,7 +37,10 @@ const ProductShow = () => {
       <Container>
         {productData?.pId ? (
           <div className="flex justify-center my-10">
-            <div style={{ minHeight: "350px" }} className="h-full bg-gray-400">
+            <div
+              style={{ minHeight: "350px" }}
+              className="h-full flex justify-center"
+            >
               <img
                 style={{ height: "350px" }}
                 src={productData.imgLink}
@@ -94,6 +98,7 @@ const ProductShow = () => {
                             alert(
                               "Your buy request in notted, please pay now before approved"
                             );
+                            navigate(`/dashboard/pay/${productData.pId}`);
                             // pay link here
                           }
                         })
