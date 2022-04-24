@@ -12,6 +12,8 @@ import axios from "axios";
 import ContentHeader from "../../../shared/ContentHeader/ContentHeader";
 import useAuth from "../../../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 
 const MyOrders = () => {
   const { setError, setMessage, user } = useAuth();
@@ -24,12 +26,12 @@ const MyOrders = () => {
       .catch((error) => setError("Failed to Database Connection Try again"));
   }, [forceUpdate]);
 
-  const handleDelete = (pId) => {
+  const handleDelete = (id) => {
     if (user.email) {
       if (window.confirm("Confirmation Click Ok to Delete")) {
         axios
           .delete(
-            `https://salam-furniture-mart.herokuapp.com/my-orders/delete/${user.email}/${pId}`
+            `https://salam-furniture-mart.herokuapp.com/my-orders/delete/${id}`
           )
           .then((res) => {
             if (res.status === 200) {
@@ -90,10 +92,18 @@ const MyOrders = () => {
                       payStatus,
                       reqDate,
                       reqTime,
+                      _id,
                     } = row;
+                    let styleRow = {};
+                    if (payStatus.toLowerCase() === "paid") {
+                      styleRow = {
+                        backgroundColor: "#B4E197",
+                      };
+                    }
                     return (
                       <TableRow
-                        key={pId}
+                        style={styleRow}
+                        key={_id}
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
@@ -121,24 +131,36 @@ const MyOrders = () => {
                           {payStatus}
                         </TableCell>
                         <TableCell className="uppercase" align="right">
-                          <Link
-                            className="underline"
-                            to={`/dashboard/pay/${pId}`}
-                          >
-                            Pay Now
-                          </Link>
+                          {payStatus.toLowerCase() === "unpaid" ? (
+                            <Link
+                              className="underline"
+                              to={`/dashboard/pay/${pId}/${_id}`}
+                            >
+                              Pay Now
+                            </Link>
+                          ) : (
+                            <CheckCircleIcon
+                              style={{ color: "green", fontSize: "40px" }}
+                            />
+                          )}
                         </TableCell>
                         <TableCell align="right">
-                          <IconButton
-                            onClick={() => handleDelete(pId)}
-                            aria-label="delete"
-                            size="small"
-                          >
-                            <DeleteIcon
-                              className="text-red-400 font-bold text-2xl"
-                              fontSize="20px"
+                          {payStatus.toLowerCase() === "unpaid" ? (
+                            <IconButton
+                              onClick={() => handleDelete(_id)}
+                              aria-label="delete"
+                              size="small"
+                            >
+                              <DeleteIcon
+                                className="text-red-400 font-bold text-2xl"
+                                fontSize="20px"
+                              />
+                            </IconButton>
+                          ) : (
+                            <AccountTreeIcon
+                              style={{ color: "gray", fontSize: "40px" }}
                             />
-                          </IconButton>
+                          )}
                         </TableCell>
                       </TableRow>
                     );

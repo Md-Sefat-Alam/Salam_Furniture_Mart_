@@ -101,7 +101,9 @@ const ProductShow = () => {
                             alert(
                               "Your buy request in notted, please pay now before approved"
                             );
-                            navigate(`/dashboard/pay/${productData.pId}`);
+                            navigate(
+                              `/dashboard/pay/${productData.pId}/${productData._id}`
+                            );
                             // pay link here
                           }
                         })

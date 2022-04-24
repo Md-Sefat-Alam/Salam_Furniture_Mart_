@@ -17,7 +17,7 @@ const Home = () => {
   const [officeData, setOfficeData] = useState({});
   useEffect(() => {
     axios
-      .get("http://localhost:5000/recent-product-added")
+      .get("https://salam-furniture-mart.herokuapp.com/recent-product-added")
       .then((res) => {
         if (res.status === 200) {
           setRecentAdded(res.data);

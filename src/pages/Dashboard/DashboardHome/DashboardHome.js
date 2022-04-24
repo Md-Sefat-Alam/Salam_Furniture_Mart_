@@ -181,7 +181,7 @@ function DashboardHome(props) {
             noWrap
             component="div"
           >
-            Responsive drawer
+            Salam Furniture Dashboard
           </Typography>
         </Toolbar>
       </AppBar>

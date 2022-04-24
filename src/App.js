@@ -76,10 +76,9 @@ function App() {
                   <Route path="myorders" element={<MyOrders />} />
                   <Route path="add-review" element={<AddReview />} />
                   {/* <Route path="add-review/:id" element={<AddReview />} /> */}
-                  <Route path="pay/:productId" element={<Pay />} />
+                  <Route path="pay/:productId/:orderId" element={<Pay />} />
                 </>
               )}
-              <Route path="link2" element={<Home />} />
             </Route>
             <Route exact path="login" element={<Login />} />
             <Route exact path="register" element={<Register />} />
